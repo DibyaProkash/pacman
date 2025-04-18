@@ -5,10 +5,10 @@
 
 ## Play the Game
 
-Try it out live at [Pacman Game](https://dibyaprokash.github.io/pacman/){:target="_blank"}!
+Try it out live at [Pacman Game](https://dibyaprokash.github.io/pacman/)!
 
 ## Overview
-This is a browser-based Pac-Man game developed using [p5.js](https://p5js.org/){:target="_blank"}. It brings the classic arcade experience to your browser with a retro aesthetic, complete with power-ups, bonus fruits, ghost personalities, and level progression. The game includes modern enhancements like accessibility features, responsive design, and a polished user interface.
+This is a browser-based Pac-Man game developed using [p5.js](https://p5js.org/). It brings the classic arcade experience to your browser with a retro aesthetic, complete with power-ups, bonus fruits, ghost personalities, and level progression. The game includes modern enhancements like accessibility features, responsive design, and a polished user interface.
 
 ## Features
 - **Classic Gameplay**: Navigate Pac-Man through a maze, eat dots, avoid ghosts, and collect power-ups to turn the tables.
