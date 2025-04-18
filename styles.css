@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Press Start 2P', cursive;
+    transition: background 0.3s;
+}
+body.dark-theme {
+    background: radial-gradient(circle, #1a1a1a, #000);
+}
+body.light-theme {
+    background: radial-gradient(circle, #e0e0e0, #fff);
+}
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 36px;
+    color: #f7d51d;
+    text-shadow: 2px 2px #000;
+    margin-bottom: 10px;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+body.dark-theme .title {
+    color: #ffd700;
+    text-shadow: 2px 2px #fff;
+}
+body.light-theme .title {
+    color: #ffd700;
+    text-shadow: 2px 2px #000;
+}
+.stats {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.stat {
+    font-size: 16px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    color: #ff0;
+    text-shadow: 2px 2px #000;
+    transition: color 0.3s;
+}
+body.light-theme .stat {
+    color: #333;
+    text-shadow: 2px 2px #ccc;
+    background: rgba(255, 255, 255, 0.5);
+}
+canvas {
+    border: 4px solid;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+body.dark-theme canvas {
+    border-color: #444;
+}
+body.light-theme canvas {
+    border-color: #666;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+#debug {
+    font-size: 12px;
+    text-shadow: 1px 1px #000;
+    transition: color 0.3s;
+    margin-top: 10px;
+    text-align: center;
+}
+body.dark-theme #debug {
+    color: #fff;
+}
+body.light-theme #debug {
+    color: #333;
+    text-shadow: 1px 1px #ccc;
+}
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: center;
+}
+#theme-toggle, #sound-toggle {
+    padding: 8px 16px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    transition: background 0.2s, color 0.3s, border-color 0.3s, transform 0.1s;
+}
+#theme-toggle:hover, #sound-toggle:hover {
+    background: #ddd;
+    transform: scale(1.05);
+}
+#theme-toggle:focus, #sound-toggle:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+body.dark-theme #theme-toggle, body.dark-theme #sound-toggle {
+    background: #fff;
+    color: #000;
+    border-color: #000;
+}
+body.light-theme #theme-toggle, body.light-theme #sound-toggle {
+    background: #333;
+    color: #fff;
+    border-color: #fff;
+}
+#mode-modal, #game-over-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#mode-modal.show, #game-over-modal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+body.dark-theme #mode-modal, body.dark-theme #game-over-modal {
+    background: rgba(0, 0, 0, 0.8);
+}
+body.light-theme #mode-modal, body.light-theme #game-over-modal {
+    background: rgba(255, 255, 255, 0.8);
+}
+.modal-content {
+    border: 4px solid;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 10px;
+    max-width: 80%;
+    width: 350px;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    position: relative;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+body.dark-theme .modal-content {
+    background: linear-gradient(135deg, #cc0000 50%, #555 50%);
+    color: #fff;
+    border-color: #000;
+}
+body.light-theme .modal-content {
+    background: linear-gradient(135deg, #ff6666 50%, #ccc 50%);
+    color: #000;
+    border-color: #333;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background: #00f;
+    border-radius: 50%;
+    box-shadow: 40px 0 0 #f00, 80px 0 0 #0f0;
+}
+.modal-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    transition: background 0.2s, color 0.3s, border-color 0.3s, transform 0.1s;
+}
+.modal-content button:hover {
+    background: #ddd;
+    transform: scale(1.05);
+}
+.modal-content button:focus {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+}
+body.dark-theme .modal-content button {
+    background: #fff;
+    color: #000;
+    border-color: #000;
+}
+body.light-theme .modal-content button {
+    background: #333;
+    color: #fff;
+    border-color: #fff;
+}
+@media (max-width: 600px) {
+    .title {
+        font-size: 24px;
+    }
+    canvas {
+        transform: scale(0.8);
+    }
+    .stats {
+        gap: 10px;
+    }
+    .stat {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+    #debug {
+        font-size: 10px;
+    }
+    .controls {
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+    #theme-toggle, #sound-toggle {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    .modal-content {
+        width: 90%;
+        font-size: 16px;
+        padding: 15px;
+    }
+    .modal-content button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+    .modal-content::before {
+        width: 15px;
+        height: 15px;
+        box-shadow: 30px 0 0 #f00, 60px 0 0 #0f0;
+    }
+}
